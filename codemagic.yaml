@@ -1,3 +1,14 @@
-git add codemagic.yaml
-git commit -m 'Add first workflow'
-git push
+ workflows:
+  android-java-build:
+    name: Build Android APK - Java
+    instance_type: mac_mini_m2
+    environment:
+      java: 17
+      android_sdk: 34
+    scripts:
+      - name: Grant permission for gradlew
+        script: chmod +x ./gradlew
+      - name: Build APK
+        script: ./gradlew assembleRelease
+    artifacts:
+      - app/build/outputs/apk/release/*.apk
