@@ -5,9 +5,7 @@ workflows:
     environment:
       java: 17
     scripts:
-      - name: Grant permission for gradlew
-        script: chmod +x ./gradlew
-      - name: Build APK
-        script: ./gradlew assembleRelease
+      - name: Build APK with Gradle
+        script: gradle assembleRelease
     artifacts:
       - app/build/outputs/apk/release/*.apk
