@@ -1,11 +1,14 @@
- workflows:
+workflows:
   android-java-build:
     name: Build Android APK - Java
     instance_type: mac_mini_m2
     environment:
       java: 17
-      android_sdk: 34
     scripts:
+      - name: Set up Android SDK
+        script: |
+          sdkmanager --install "platforms;android-34" "build-tools;34.0.0"
+          yes | sdkmanager --licenses
       - name: Grant permission for gradlew
         script: chmod +x ./gradlew
       - name: Build APK
